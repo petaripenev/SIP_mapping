@@ -11,11 +11,14 @@ fractions = []
 for header_col in df_sample:
     if header_col.startswith("fraction_"):
         fraction = header_col.split("_")[1]
-        fwrv = header_col.split("_")[3]
-        fr_18O = f"fraction_{fraction}_18O_{fwrv}"
-        df_sample[fr_18O] = df_sample[header_col].apply(lambda x: x.replace("16O", "18O"))
+        isotope = header_col.split("_")[2]
+        fr_rev = f"fraction_{fraction}_{isotope}_rv"
+        df_sample[fr_rev] = df_sample[header_col].apply(lambda x: x.replace(".PE.1.fastq.gz", ".PE.2.fastq.gz"))
         if fraction not in fractions:
             fractions.append(int(fraction))
+    if header_col.startswith("t0_"):
+        fwrv = header_col.split("_")[1]
+        df_sample["t0_rv"] = df_sample[header_col].apply(lambda x: x.replace(".PE.1.fastq.gz", ".PE.2.fastq.gz"))
 
 #print(df_sample.to_markdown())
 fraction_loop_regex = f"[{min(fractions)}-{max(fractions)}]+"
