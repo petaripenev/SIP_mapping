@@ -1,0 +1,422 @@
+Building DAG of jobs...
+Your conda installation is not configured to use strict channel priorities. This is however crucial for having robust and correct environments (for details, see https://conda-forge.org/docs/user/tipsandtricks.html). Please consider to configure strict priorities by executing 'conda config --set channel_priority strict'.
+Using shell: /usr/bin/bash
+Provided cluster nodes: 8
+Job stats:
+job                count
+---------------  -------
+all                    1
+get_count_table       15
+total                 16
+
+Select jobs to execute...
+
+[Sat Nov 18 11:21:29 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC9_D3_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC9_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D3_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC9_D3_coass-16O-0-7/WaterYear_AC9_D3_coass-16O-0-7_count_table.tsv
+    jobid: 205
+    reason: Missing output files: results/WaterYear_AC9_D3_coass-16O-0-7/WaterYear_AC9_D3_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC9_D3_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=68452, mem_mib=65281, disk_mb=68452, disk_mib=65281, tmpdir=<TBD>, partition=standard
+
+Submitted job 205 with external jobid 'Submitted batch job 220882'.
+
+[Sat Nov 18 11:21:29 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC3_D5_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC3_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D5_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC3_D5_coass-16O-0-7/WaterYear_AC3_D5_coass-16O-0-7_count_table.tsv
+    jobid: 185
+    reason: Missing output files: results/WaterYear_AC3_D5_coass-16O-0-7/WaterYear_AC3_D5_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC3_D5_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=76508, mem_mib=72964, disk_mb=76508, disk_mib=72964, tmpdir=<TBD>, partition=standard
+
+Submitted job 185 with external jobid 'Submitted batch job 220883'.
+
+[Sat Nov 18 11:21:29 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC4_D5_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC4_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D5_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC4_D5_coass-16O-0-7/WaterYear_AC4_D5_coass-16O-0-7_count_table.tsv
+    jobid: 191
+    reason: Missing output files: results/WaterYear_AC4_D5_coass-16O-0-7/WaterYear_AC4_D5_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC4_D5_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=70878, mem_mib=67595, disk_mb=70878, disk_mib=67595, tmpdir=<TBD>, partition=standard
+
+Submitted job 191 with external jobid 'Submitted batch job 220884'.
+
+[Sat Nov 18 11:21:29 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC9_D5_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC9_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D5_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC9_D5_coass-16O-0-7/WaterYear_AC9_D5_coass-16O-0-7_count_table.tsv
+    jobid: 207
+    reason: Missing output files: results/WaterYear_AC9_D5_coass-16O-0-7/WaterYear_AC9_D5_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC9_D5_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=70925, mem_mib=67640, disk_mb=70925, disk_mib=67640, tmpdir=<TBD>, partition=standard
+
+Submitted job 207 with external jobid 'Submitted batch job 220885'.
+
+[Sat Nov 18 11:21:29 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC4_D3_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC4_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D3_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC4_D3_coass-16O-0-7/WaterYear_AC4_D3_coass-16O-0-7_count_table.tsv
+    jobid: 189
+    reason: Missing output files: results/WaterYear_AC4_D3_coass-16O-0-7/WaterYear_AC4_D3_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC4_D3_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=60595, mem_mib=57788, disk_mb=60595, disk_mib=57788, tmpdir=<TBD>, partition=standard
+
+Submitted job 189 with external jobid 'Submitted batch job 220886'.
+
+[Sat Nov 18 11:21:29 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC5_D3_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC5_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D3_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC5_D3_coass-16O-0-7/WaterYear_AC5_D3_coass-16O-0-7_count_table.tsv
+    jobid: 195
+    reason: Missing output files: results/WaterYear_AC5_D3_coass-16O-0-7/WaterYear_AC5_D3_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC5_D3_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=61385, mem_mib=58542, disk_mb=61385, disk_mib=58542, tmpdir=<TBD>, partition=standard
+
+Submitted job 195 with external jobid 'Submitted batch job 220887'.
+
+[Sat Nov 18 11:21:29 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC5_D5_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC5_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D5_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC5_D5_coass-16O-0-7/WaterYear_AC5_D5_coass-16O-0-7_count_table.tsv
+    jobid: 197
+    reason: Missing output files: results/WaterYear_AC5_D5_coass-16O-0-7/WaterYear_AC5_D5_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC5_D5_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=79200, mem_mib=75532, disk_mb=79200, disk_mib=75532, tmpdir=<TBD>, partition=standard
+
+Submitted job 197 with external jobid 'Submitted batch job 220888'.
+
+[Sat Nov 18 11:21:29 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC7_D5_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC7_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D5_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC7_D5_coass-16O-0-7/WaterYear_AC7_D5_coass-16O-0-7_count_table.tsv
+    jobid: 203
+    reason: Missing output files: results/WaterYear_AC7_D5_coass-16O-0-7/WaterYear_AC7_D5_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC7_D5_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=58757, mem_mib=56036, disk_mb=58757, disk_mib=56036, tmpdir=<TBD>, partition=standard
+
+Submitted job 203 with external jobid 'Submitted batch job 220889'.
+[Sat Nov 18 13:11:36 2023]
+Finished job 203.
+1 of 16 steps (6%) done
+Removing temporary output results/maps/t0/WaterYear_AC7_D5_coass-16O-0-7_t0_mapped.sort.bam.
+Select jobs to execute...
+
+[Sat Nov 18 13:11:36 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC7_D3_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC7_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D3_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC7_D3_coass-16O-0-7/WaterYear_AC7_D3_coass-16O-0-7_count_table.tsv
+    jobid: 201
+    reason: Missing output files: results/WaterYear_AC7_D3_coass-16O-0-7/WaterYear_AC7_D3_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC7_D3_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=53058, mem_mib=50601, disk_mb=53058, disk_mib=50601, tmpdir=<TBD>, partition=standard
+
+Submitted job 201 with external jobid 'Submitted batch job 221376'.
+[Sat Nov 18 13:22:16 2023]
+Finished job 195.
+2 of 16 steps (12%) done
+Removing temporary output results/maps/t0/WaterYear_AC5_D3_coass-16O-0-7_t0_mapped.sort.bam.
+Select jobs to execute...
+
+[Sat Nov 18 13:22:17 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC4_D1_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC4_D1_coass-16O-0-7/WaterYear_AC4_D1_coass-16O-0-7_count_table.tsv
+    jobid: 187
+    reason: Missing output files: results/WaterYear_AC4_D1_coass-16O-0-7/WaterYear_AC4_D1_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC4_D1_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=47277, mem_mib=45087, disk_mb=47277, disk_mib=45087, tmpdir=<TBD>, partition=standard
+
+Submitted job 187 with external jobid 'Submitted batch job 221428'.
+[Sat Nov 18 13:37:57 2023]
+Finished job 189.
+3 of 16 steps (19%) done
+Removing temporary output results/maps/t0/WaterYear_AC4_D3_coass-16O-0-7_t0_mapped.sort.bam.
+Select jobs to execute...
+
+[Sat Nov 18 13:37:57 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC3_D3_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC3_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D3_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC3_D3_coass-16O-0-7/WaterYear_AC3_D3_coass-16O-0-7_count_table.tsv
+    jobid: 183
+    reason: Missing output files: results/WaterYear_AC3_D3_coass-16O-0-7/WaterYear_AC3_D3_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC3_D3_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=42328, mem_mib=40368, disk_mb=42328, disk_mib=40368, tmpdir=<TBD>, partition=standard
+
+Submitted job 183 with external jobid 'Submitted batch job 221495'.
+[Sat Nov 18 13:40:38 2023]
+Finished job 207.
+4 of 16 steps (25%) done
+Removing temporary output results/maps/t0/WaterYear_AC9_D5_coass-16O-0-7_t0_mapped.sort.bam.
+Select jobs to execute...
+
+[Sat Nov 18 13:40:38 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC7_D1_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC7_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D1_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC7_D1_coass-16O-0-7/WaterYear_AC7_D1_coass-16O-0-7_count_table.tsv
+    jobid: 199
+    reason: Missing output files: results/WaterYear_AC7_D1_coass-16O-0-7/WaterYear_AC7_D1_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC7_D1_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=41400, mem_mib=39483, disk_mb=41400, disk_mib=39483, tmpdir=<TBD>, partition=standard
+
+Submitted job 199 with external jobid 'Submitted batch job 221508'.
+[Sat Nov 18 13:43:18 2023]
+Finished job 205.
+5 of 16 steps (31%) done
+Removing temporary output results/maps/t0/WaterYear_AC9_D3_coass-16O-0-7_t0_mapped.sort.bam.
+Select jobs to execute...
+
+[Sat Nov 18 13:43:18 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC9_D1_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC9_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D1_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC9_D1_coass-16O-0-7/WaterYear_AC9_D1_coass-16O-0-7_count_table.tsv
+    jobid: 209
+    reason: Missing output files: results/WaterYear_AC9_D1_coass-16O-0-7/WaterYear_AC9_D1_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC9_D1_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=40512, mem_mib=38636, disk_mb=40512, disk_mib=38636, tmpdir=<TBD>, partition=standard
+
+Submitted job 209 with external jobid 'Submitted batch job 221518'.
+[Sat Nov 18 13:45:58 2023]
+Finished job 197.
+6 of 16 steps (38%) done
+Removing temporary output results/maps/t0/WaterYear_AC5_D5_coass-16O-0-7_t0_mapped.sort.bam.
+Select jobs to execute...
+
+[Sat Nov 18 13:45:58 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC3_D1_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC3_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D1_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC3_D1_coass-16O-0-7/WaterYear_AC3_D1_coass-16O-0-7_count_table.tsv
+    jobid: 181
+    reason: Missing output files: results/WaterYear_AC3_D1_coass-16O-0-7/WaterYear_AC3_D1_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC3_D1_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=39308, mem_mib=37488, disk_mb=39308, disk_mib=37488, tmpdir=<TBD>, partition=standard
+
+Submitted job 181 with external jobid 'Submitted batch job 221530'.
+[Sat Nov 18 13:54:38 2023]
+Finished job 185.
+7 of 16 steps (44%) done
+Removing temporary output results/maps/t0/WaterYear_AC3_D5_coass-16O-0-7_t0_mapped.sort.bam.
+Select jobs to execute...
+
+[Sat Nov 18 13:54:38 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC5_D1_coass-16O-0-7_t0_mapped.sort.bam, results/maps/1/WaterYear_AC5_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D1_coass-16O-0-7_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC5_D1_coass-16O-0-7/WaterYear_AC5_D1_coass-16O-0-7_count_table.tsv
+    jobid: 193
+    reason: Missing output files: results/WaterYear_AC5_D1_coass-16O-0-7/WaterYear_AC5_D1_coass-16O-0-7_count_table.tsv
+    wildcards: sample=WaterYear_AC5_D1_coass-16O-0-7
+    threads: 10000
+    resources: mem_mb=36792, mem_mib=35088, disk_mb=36792, disk_mib=35088, tmpdir=<TBD>, partition=standard
+
+Submitted job 193 with external jobid 'Submitted batch job 221554'.
+[Sat Nov 18 14:35:21 2023]
+Finished job 191.
+8 of 16 steps (50%) done
+Removing temporary output results/maps/t0/WaterYear_AC4_D5_coass-16O-0-7_t0_mapped.sort.bam.
+[Sat Nov 18 15:10:53 2023]
+Finished job 201.
+9 of 16 steps (56%) done
+Removing temporary output results/maps/t0/WaterYear_AC7_D3_coass-16O-0-7_t0_mapped.sort.bam.
+[Sat Nov 18 15:34:24 2023]
+Finished job 187.
+10 of 16 steps (62%) done
+Removing temporary output results/maps/t0/WaterYear_AC4_D1_coass-16O-0-7_t0_mapped.sort.bam.
+[Sat Nov 18 15:37:55 2023]
+Finished job 193.
+11 of 16 steps (69%) done
+Removing temporary output results/maps/t0/WaterYear_AC5_D1_coass-16O-0-7_t0_mapped.sort.bam.
+[Sat Nov 18 16:30:18 2023]
+Finished job 181.
+12 of 16 steps (75%) done
+Removing temporary output results/maps/t0/WaterYear_AC3_D1_coass-16O-0-7_t0_mapped.sort.bam.
+[Sat Nov 18 16:33:48 2023]
+Finished job 199.
+13 of 16 steps (81%) done
+Removing temporary output results/maps/t0/WaterYear_AC7_D1_coass-16O-0-7_t0_mapped.sort.bam.
+[Sat Nov 18 17:07:20 2023]
+Finished job 183.
+14 of 16 steps (88%) done
+Removing temporary output results/maps/t0/WaterYear_AC3_D3_coass-16O-0-7_t0_mapped.sort.bam.
+[Sat Nov 18 17:15:51 2023]
+Finished job 209.
+15 of 16 steps (94%) done
+Removing temporary output results/maps/t0/WaterYear_AC9_D1_coass-16O-0-7_t0_mapped.sort.bam.
+Select jobs to execute...
+
+[Sat Nov 18 17:15:51 2023]
+localrule all:
+    input: results/scaffolds/WaterYear_AC3_D1_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC3_D3_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC3_D5_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC4_D1_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC4_D3_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC4_D5_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC5_D1_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC5_D3_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC5_D5_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC7_D1_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC7_D3_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC7_D5_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC9_D3_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC9_D5_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC9_D1_coass-16O-0-7_scaffold.fa, results/WaterYear_AC3_D1_coass-16O-0-7/bbmap_ref/WaterYear_AC3_D1_coass-16O-0-7, results/WaterYear_AC3_D3_coass-16O-0-7/bbmap_ref/WaterYear_AC3_D3_coass-16O-0-7, results/WaterYear_AC3_D5_coass-16O-0-7/bbmap_ref/WaterYear_AC3_D5_coass-16O-0-7, results/WaterYear_AC4_D1_coass-16O-0-7/bbmap_ref/WaterYear_AC4_D1_coass-16O-0-7, results/WaterYear_AC4_D3_coass-16O-0-7/bbmap_ref/WaterYear_AC4_D3_coass-16O-0-7, results/WaterYear_AC4_D5_coass-16O-0-7/bbmap_ref/WaterYear_AC4_D5_coass-16O-0-7, results/WaterYear_AC5_D1_coass-16O-0-7/bbmap_ref/WaterYear_AC5_D1_coass-16O-0-7, results/WaterYear_AC5_D3_coass-16O-0-7/bbmap_ref/WaterYear_AC5_D3_coass-16O-0-7, results/WaterYear_AC5_D5_coass-16O-0-7/bbmap_ref/WaterYear_AC5_D5_coass-16O-0-7, results/WaterYear_AC7_D1_coass-16O-0-7/bbmap_ref/WaterYear_AC7_D1_coass-16O-0-7, results/WaterYear_AC7_D3_coass-16O-0-7/bbmap_ref/WaterYear_AC7_D3_coass-16O-0-7, results/WaterYear_AC7_D5_coass-16O-0-7/bbmap_ref/WaterYear_AC7_D5_coass-16O-0-7, results/WaterYear_AC9_D3_coass-16O-0-7/bbmap_ref/WaterYear_AC9_D3_coass-16O-0-7, results/WaterYear_AC9_D5_coass-16O-0-7/bbmap_ref/WaterYear_AC9_D5_coass-16O-0-7, results/WaterYear_AC9_D1_coass-16O-0-7/bbmap_ref/WaterYear_AC9_D1_coass-16O-0-7, results/maps/1/WaterYear_AC3_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC3_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC3_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC3_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC3_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC3_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC5_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC5_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC5_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC5_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC5_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC7_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC7_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC7_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC7_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC7_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D3_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D3_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D3_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D3_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D3_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D3_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D3_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D3_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D3_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D3_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D5_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D5_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D5_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D5_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D5_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D5_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D5_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D5_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D5_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D5_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D1_coass-16O-0-7_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC9_D1_coass-16O-0-7_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D1_coass-16O-0-7_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC9_D1_coass-16O-0-7_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D1_coass-16O-0-7_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC9_D1_coass-16O-0-7_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D1_coass-16O-0-7_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC9_D1_coass-16O-0-7_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D1_coass-16O-0-7_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC9_D1_coass-16O-0-7_5_18O_mapped.sort.bam, results/WaterYear_AC3_D1_coass-16O-0-7/WaterYear_AC3_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC3_D3_coass-16O-0-7/WaterYear_AC3_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC3_D5_coass-16O-0-7/WaterYear_AC3_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC4_D1_coass-16O-0-7/WaterYear_AC4_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC4_D3_coass-16O-0-7/WaterYear_AC4_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC4_D5_coass-16O-0-7/WaterYear_AC4_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC5_D1_coass-16O-0-7/WaterYear_AC5_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC5_D3_coass-16O-0-7/WaterYear_AC5_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC5_D5_coass-16O-0-7/WaterYear_AC5_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC7_D1_coass-16O-0-7/WaterYear_AC7_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC7_D3_coass-16O-0-7/WaterYear_AC7_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC7_D5_coass-16O-0-7/WaterYear_AC7_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC9_D3_coass-16O-0-7/WaterYear_AC9_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC9_D5_coass-16O-0-7/WaterYear_AC9_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC9_D1_coass-16O-0-7/WaterYear_AC9_D1_coass-16O-0-7_count_table.tsv
+    jobid: 0
+    reason: Input files updated by another job: results/WaterYear_AC5_D1_coass-16O-0-7/WaterYear_AC5_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC4_D5_coass-16O-0-7/WaterYear_AC4_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC7_D5_coass-16O-0-7/WaterYear_AC7_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC9_D1_coass-16O-0-7/WaterYear_AC9_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC4_D3_coass-16O-0-7/WaterYear_AC4_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC7_D3_coass-16O-0-7/WaterYear_AC7_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC4_D1_coass-16O-0-7/WaterYear_AC4_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC5_D3_coass-16O-0-7/WaterYear_AC5_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC9_D5_coass-16O-0-7/WaterYear_AC9_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC7_D1_coass-16O-0-7/WaterYear_AC7_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC3_D3_coass-16O-0-7/WaterYear_AC3_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC5_D5_coass-16O-0-7/WaterYear_AC5_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC9_D3_coass-16O-0-7/WaterYear_AC9_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC3_D1_coass-16O-0-7/WaterYear_AC3_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC3_D5_coass-16O-0-7/WaterYear_AC3_D5_coass-16O-0-7_count_table.tsv
+    resources: mem_mb=728335, mem_mib=694595, disk_mb=728335, disk_mib=694595, tmpdir=/tmp, partition=standard
+
+[Sat Nov 18 17:15:51 2023]
+Finished job 0.
+16 of 16 steps (100%) done
+Removing temporary output results/maps/1/WaterYear_AC3_D1_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC3_D1_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC3_D1_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC3_D1_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC3_D1_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC3_D1_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC3_D1_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC3_D1_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC3_D1_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC3_D1_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC3_D3_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC3_D3_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC3_D3_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC3_D3_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC3_D3_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC3_D3_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC3_D3_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC3_D3_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC3_D3_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC3_D3_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC3_D5_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC3_D5_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC3_D5_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC3_D5_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC3_D5_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC3_D5_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC3_D5_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC3_D5_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC3_D5_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC3_D5_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC4_D1_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC4_D1_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC4_D1_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC4_D1_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC4_D1_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC4_D1_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC4_D1_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC4_D1_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC4_D1_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC4_D1_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC4_D3_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC4_D3_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC4_D3_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC4_D3_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC4_D3_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC4_D3_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC4_D3_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC4_D3_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC4_D3_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC4_D3_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC4_D5_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC4_D5_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC4_D5_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC4_D5_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC4_D5_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC4_D5_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC4_D5_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC4_D5_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC4_D5_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC4_D5_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC5_D1_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC5_D1_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC5_D1_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC5_D1_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC5_D1_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC5_D1_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC5_D1_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC5_D1_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC5_D1_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC5_D1_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC5_D3_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC5_D3_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC5_D3_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC5_D3_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC5_D3_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC5_D3_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC5_D3_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC5_D3_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC5_D3_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC5_D3_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC5_D5_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC5_D5_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC5_D5_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC5_D5_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC5_D5_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC5_D5_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC5_D5_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC5_D5_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC5_D5_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC5_D5_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC7_D1_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC7_D1_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC7_D1_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC7_D1_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC7_D1_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC7_D1_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC7_D1_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC7_D1_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC7_D1_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC7_D1_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC7_D3_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC7_D3_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC7_D3_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC7_D3_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC7_D3_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC7_D3_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC7_D3_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC7_D3_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC7_D3_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC7_D3_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC7_D5_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC7_D5_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC7_D5_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC7_D5_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC7_D5_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC7_D5_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC7_D5_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC7_D5_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC7_D5_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC7_D5_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC9_D3_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC9_D3_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC9_D3_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC9_D3_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC9_D3_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC9_D3_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC9_D3_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC9_D3_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC9_D3_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC9_D3_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC9_D5_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC9_D5_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC9_D5_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC9_D5_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC9_D5_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC9_D5_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC9_D5_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC9_D5_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC9_D5_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC9_D5_coass-16O-0-7_5_18O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC9_D1_coass-16O-0-7_1_16O_mapped.sort.bam.
+Removing temporary output results/maps/1/WaterYear_AC9_D1_coass-16O-0-7_1_18O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC9_D1_coass-16O-0-7_2_16O_mapped.sort.bam.
+Removing temporary output results/maps/2/WaterYear_AC9_D1_coass-16O-0-7_2_18O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC9_D1_coass-16O-0-7_3_16O_mapped.sort.bam.
+Removing temporary output results/maps/3/WaterYear_AC9_D1_coass-16O-0-7_3_18O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC9_D1_coass-16O-0-7_4_16O_mapped.sort.bam.
+Removing temporary output results/maps/4/WaterYear_AC9_D1_coass-16O-0-7_4_18O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC9_D1_coass-16O-0-7_5_16O_mapped.sort.bam.
+Removing temporary output results/maps/5/WaterYear_AC9_D1_coass-16O-0-7_5_18O_mapped.sort.bam.
+Complete log: .snakemake/log/2023-11-18T112125.722876.snakemake.log

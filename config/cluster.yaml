@@ -1,0 +1,4 @@
+__default__:
+  M: 'ppenev@berkeley.edu'
+  o: 'slurm_out/{rule}/%j-{wildcards}.out'
+  p: '{resources.partition}'

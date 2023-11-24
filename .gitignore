@@ -1,0 +1,5 @@
+.snakemake/conda*
+.snakemake/metadata*
+results/*
+logs/*
+slurm_out/*

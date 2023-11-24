@@ -1,0 +1,177 @@
+import pandas as pd
+import os
+
+configfile: "config/config.yaml"
+
+df_sample = pd.read_csv(config["samples"], sep="\t")
+df_sample = df_sample.fillna("")
+df_sample[df_sample.columns] = df_sample.apply(lambda x: x.str.strip())
+fractions = []
+
+for header_col in df_sample:
+    if header_col.startswith("fraction_"):
+        fraction = header_col.split("_")[1]
+        fwrv = header_col.split("_")[3]
+        fr_18O = f"fraction_{fraction}_18O_{fwrv}"
+        df_sample[fr_18O] = df_sample[header_col].apply(lambda x: x.replace("16O", "18O"))
+        if fraction not in fractions:
+            fractions.append(int(fraction))
+
+#print(df_sample.to_markdown())
+fraction_loop_regex = f"[{min(fractions)}-{max(fractions)}]+"
+sample_to_info = df_sample.set_index("sample_name").to_dict("index")
+
+rule all:
+    input:
+        expand("results/scaffolds/{sample}_scaffold.fa", 
+                sample=sample_to_info.keys(),
+        ), 
+        expand("results/{sample}/bbmap_ref/{sample}", 
+                sample=sample_to_info.keys(),
+        ),
+        # expand("results/maps/{n}/{sample}_{n}_{isotope}_mapped.sort.bam", 
+        #         sample=sample_to_info.keys(),
+        #         n=sorted(fractions),
+        #         isotope=config["isotopes"],
+        # ),
+        expand("results/{sample}/{sample}_count_table.tsv", 
+                sample=sample_to_info.keys(),
+        ),
+
+
+localrules: link_input_files
+
+rule link_input_files:
+    input:
+        t0_fw = lambda wildcards: sample_to_info[wildcards.sample]["t0_fw"],
+        t0_rv = lambda wildcards: sample_to_info[wildcards.sample]["t0_rv"],
+        scaffolds_path = lambda wildcards: sample_to_info[wildcards.sample]["scaffolds_path"],
+        bins_path = lambda wildcards: sample_to_info[wildcards.sample]["contig_to_bin"],
+    output:
+        t0_fw_link = "results/reads/t0/{sample}_t0_fw.fq.gz",
+        t0_rv_link = "results/reads/t0/{sample}_t0_rv.fq.gz",
+        linked_scaffolds_path = "results/scaffolds/{sample}_scaffold.fa",
+        linked_bins_path = "results/dastool_bins/{sample}.dastool.contig_to_bin.tsv",
+    group:
+        1
+    shell:
+        """
+        ln -s {input.t0_fw} {output.t0_fw_link}
+        ln -s {input.t0_rv} {output.t0_rv_link}
+        ln -s {input.scaffolds_path} {output.linked_scaffolds_path}
+        ln -s {input.bins_path} {output.linked_bins_path}
+        """
+
+rule generate_bbmap_index:
+    input:
+        scaffold_path = "results/scaffolds/{sample}_scaffold.fa",
+    output:
+        index=directory("results/{sample}/bbmap_ref/{sample}"),
+    log:
+        "results/{sample}/{sample}_bbmap_index.log",
+    threads: config["max_threads"]
+    conda:
+        "envs/bbmap.yaml"
+    shell:
+        """
+        bbmap.sh \
+        reference={input.scaffold_path} \
+        path={output.index} \
+        threads={threads} \
+        &> {log}
+        """
+
+def get_fw_reads(wcs):
+    return sample_to_info[wcs.sample][f"fraction_{wcs.n}_{wcs.isotope}_fw"]
+def get_rv_reads(wcs):
+    return sample_to_info[wcs.sample][f"fraction_{wcs.n}_{wcs.isotope}_rv"]
+
+rule map_fr_reads:
+    input:
+        index = "results/{sample}/bbmap_ref/{sample}",
+        fw_reads_path = get_fw_reads,
+        rv_reads_path = get_rv_reads,
+    output:
+        coverage_stats = "results/maps/{n}/covstats_{sample}_{n}_{isotope}.tsv",
+        coverage_hist = "results/maps/{n}/covhist_{sample}_{n}_{isotope}.tsv",
+        mapping = temp("results/maps/{n}/{sample}_{n}_{isotope}_mapped.sort.bam"),
+    wildcard_constraints:
+        n=fraction_loop_regex,
+        isotope=config["isotope_regex"],
+    log:
+        "logs/maps/{n}/{sample}_{isotope}_mapping.log"
+    params:
+        ambiguous="random",
+        minid=config["min_map_id"],
+    threads: config["max_threads"]
+    conda:
+        "envs/bbmap.yaml"
+    shell:
+        """
+        bbmap.sh \
+        in1={input.fw_reads_path} \
+        in2={input.rv_reads_path} \
+        path={input.index} \
+        trimreaddescriptions=t \
+        minid={params.minid} \
+        ambiguous={params.ambiguous} \
+        threads={threads} \
+        covstats={output.coverage_stats} \
+        covhist={output.coverage_hist} \
+        outm=stdout.sam 2> {log} |\
+        sambam > {output.mapping}
+        """
+
+rule map_t0_reads:
+    input:
+        index = "results/{sample}/bbmap_ref/{sample}",
+        t0_fw = "results/reads/t0/{sample}_t0_fw.fq.gz",
+        t0_rv = "results/reads/t0/{sample}_t0_rv.fq.gz",
+    output:
+        coverage_stats = "results/maps/t0/covstats_{sample}.txt",
+        coverage_hist = "results/maps/t0/covhist_{sample}.txt",
+        mapping = temp("results/maps/t0/{sample}_t0_mapped.sort.bam"),
+    log:
+        "logs/maps/t0/{sample}_t0_mapping.log"
+    params:
+        ambiguous="random",
+        minid=config["min_map_id"],
+    threads: config["max_threads"]
+    conda:
+        "envs/bbmap.yaml"
+    shell:
+        """
+        bbmap.sh \
+        in1={input.t0_fw} \
+        in2={input.t0_rv} \
+        path={input.index} \
+        trimreaddescriptions=t \
+        minid={params.minid} \
+        ambiguous={params.ambiguous} \
+        threads={threads} \
+        covstats={output.coverage_stats} \
+        covhist={output.coverage_hist} \
+        outm=stdout.sam 2> {log} |\
+        sambam > {output.mapping}
+        """
+
+rule get_count_table:
+    input:
+        t0_map = "results/maps/t0/{sample}_t0_mapped.sort.bam",
+        fr_maps = expand("results/maps/{n}/{{sample}}_{n}_{isotope}_mapped.sort.bam",
+                        n=sorted(fractions),
+                        isotope=config["isotopes"]),
+    output:
+        count_table = "results/{sample}/{sample}_count_table.tsv",
+    params:
+        min_read_perc_id=config["coverm_perc_id"],
+    threads: config["max_threads"]
+    shell:
+        """
+        coverm contig \
+        --bam-files {input.t0_map} {input.fr_maps} \
+        -m count \
+        -o {output.count_table} \
+        -t {threads} \
+        --min-read-percent-identity {params.min_read_perc_id}
+        """

@@ -1,0 +1,247 @@
+Building DAG of jobs...
+Job stats:
+job                     count
+--------------------  -------
+all                         1
+generate_bbmap_index        1
+get_count_table             1
+link_input_files            1
+map_fr_reads               10
+map_t0_reads                1
+total                      15
+
+
+[Sun Nov 19 01:56:32 2023]
+localrule link_input_files:
+    input: /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-0/raw.d/WaterYear_AC4_D1_16O-0_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-0/raw.d/WaterYear_AC4_D1_16O-0_trim_clean.PE.2.fastq.gz, /groups/banfield/scratch/projects/environmental/spot/int/2023/assembly.d/pipeline/results/WaterYear_AC4_D1_coass-16O-0-7/WaterYear_AC4_D1_coass-16O-0-7_scaffold_min1000.fa, /groups/banfield/scratch/projects/environmental/spot/int/2023/bin.d/ggBin/results/WaterYear_AC4_D1_coass-16O-0-7/bins/dastool/results/WaterYear_AC4_D1_coass-16O-0-7.asm.fa.dastool/tables/WaterYear_AC4_D1_coass-16O-0-7.dastool.contig_to_bin.tsv
+    output: results/reads/t0/WaterYear_AC4_D1_MH_t0_fw.fq.gz, results/reads/t0/WaterYear_AC4_D1_MH_t0_rv.fq.gz, results/scaffolds/WaterYear_AC4_D1_MH_scaffold.fa, results/dastool_bins/WaterYear_AC4_D1_MH.dastool.contig_to_bin.tsv
+    jobid: 16
+    reason: Missing output files: results/reads/t0/WaterYear_AC4_D1_MH_t0_rv.fq.gz, results/reads/t0/WaterYear_AC4_D1_MH_t0_fw.fq.gz, results/scaffolds/WaterYear_AC4_D1_MH_scaffold.fa
+    wildcards: sample=WaterYear_AC4_D1_MH
+    resources: tmpdir=/tmp
+
+
+        ln -s /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-0/raw.d/WaterYear_AC4_D1_16O-0_trim_clean.PE.1.fastq.gz results/reads/t0/WaterYear_AC4_D1_MH_t0_fw.fq.gz
+        ln -s /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-0/raw.d/WaterYear_AC4_D1_16O-0_trim_clean.PE.2.fastq.gz results/reads/t0/WaterYear_AC4_D1_MH_t0_rv.fq.gz
+        ln -s /groups/banfield/scratch/projects/environmental/spot/int/2023/assembly.d/pipeline/results/WaterYear_AC4_D1_coass-16O-0-7/WaterYear_AC4_D1_coass-16O-0-7_scaffold_min1000.fa results/scaffolds/WaterYear_AC4_D1_MH_scaffold.fa
+        ln -s /groups/banfield/scratch/projects/environmental/spot/int/2023/bin.d/ggBin/results/WaterYear_AC4_D1_coass-16O-0-7/bins/dastool/results/WaterYear_AC4_D1_coass-16O-0-7.asm.fa.dastool/tables/WaterYear_AC4_D1_coass-16O-0-7.dastool.contig_to_bin.tsv results/dastool_bins/WaterYear_AC4_D1_MH.dastool.contig_to_bin.tsv
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule generate_bbmap_index:
+    input: results/scaffolds/WaterYear_AC4_D1_MH_scaffold.fa
+    output: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    log: results/WaterYear_AC4_D1_MH/WaterYear_AC4_D1_MH_bbmap_index.log
+    jobid: 32
+    reason: Missing output files: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH; Input files updated by another job: results/scaffolds/WaterYear_AC4_D1_MH_scaffold.fa
+    wildcards: sample=WaterYear_AC4_D1_MH
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         reference=results/scaffolds/WaterYear_AC4_D1_MH_scaffold.fa         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         threads=1         &> results/WaterYear_AC4_D1_MH/WaterYear_AC4_D1_MH_bbmap_index.log
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_t0_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, results/reads/t0/WaterYear_AC4_D1_MH_t0_fw.fq.gz, results/reads/t0/WaterYear_AC4_D1_MH_t0_rv.fq.gz
+    output: results/maps/t0/covstats_WaterYear_AC4_D1_MH.txt, results/maps/t0/covhist_WaterYear_AC4_D1_MH.txt, results/maps/t0/WaterYear_AC4_D1_MH_t0_mapped.sort.bam
+    log: logs/maps/t0/WaterYear_AC4_D1_MH_t0_mapping.log
+    jobid: 214
+    reason: Missing output files: results/maps/t0/WaterYear_AC4_D1_MH_t0_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, results/reads/t0/WaterYear_AC4_D1_MH_t0_rv.fq.gz, results/reads/t0/WaterYear_AC4_D1_MH_t0_fw.fq.gz
+    wildcards: sample=WaterYear_AC4_D1_MH
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=results/reads/t0/WaterYear_AC4_D1_MH_t0_fw.fq.gz         in2=results/reads/t0/WaterYear_AC4_D1_MH_t0_rv.fq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/t0/covstats_WaterYear_AC4_D1_MH.txt         covhist=results/maps/t0/covhist_WaterYear_AC4_D1_MH.txt         outm=stdout.sam 2> logs/maps/t0/WaterYear_AC4_D1_MH_t0_mapping.log |        sambam > results/maps/t0/WaterYear_AC4_D1_MH_t0_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_fr_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_5/raw.d/WaterYear_AC4_D1_16O-7_5_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_5/raw.d/WaterYear_AC4_D1_16O-7_5_trim_clean.PE.2.fastq.gz
+    output: results/maps/5/covstats_WaterYear_AC4_D1_MH_5_16O.tsv, results/maps/5/covhist_WaterYear_AC4_D1_MH_5_16O.tsv, results/maps/5/WaterYear_AC4_D1_MH_5_16O_mapped.sort.bam
+    log: logs/maps/5/WaterYear_AC4_D1_MH_16O_mapping.log
+    jobid: 223
+    reason: Missing output files: results/maps/5/WaterYear_AC4_D1_MH_5_16O_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    wildcards: n=5, sample=WaterYear_AC4_D1_MH, isotope=16O
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=/groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_5/raw.d/WaterYear_AC4_D1_16O-7_5_trim_clean.PE.1.fastq.gz         in2=/groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_5/raw.d/WaterYear_AC4_D1_16O-7_5_trim_clean.PE.2.fastq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/5/covstats_WaterYear_AC4_D1_MH_5_16O.tsv         covhist=results/maps/5/covhist_WaterYear_AC4_D1_MH_5_16O.tsv         outm=stdout.sam 2> logs/maps/5/WaterYear_AC4_D1_MH_16O_mapping.log |        sambam > results/maps/5/WaterYear_AC4_D1_MH_5_16O_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_fr_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, /groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_2/raw.d/WaterYear_AC4_D1_18O-7_2_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_2/raw.d/WaterYear_AC4_D1_18O-7_2_trim_clean.PE.2.fastq.gz
+    output: results/maps/2/covstats_WaterYear_AC4_D1_MH_2_18O.tsv, results/maps/2/covhist_WaterYear_AC4_D1_MH_2_18O.tsv, results/maps/2/WaterYear_AC4_D1_MH_2_18O_mapped.sort.bam
+    log: logs/maps/2/WaterYear_AC4_D1_MH_18O_mapping.log
+    jobid: 218
+    reason: Missing output files: results/maps/2/WaterYear_AC4_D1_MH_2_18O_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    wildcards: n=2, sample=WaterYear_AC4_D1_MH, isotope=18O
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=/groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_2/raw.d/WaterYear_AC4_D1_18O-7_2_trim_clean.PE.1.fastq.gz         in2=/groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_2/raw.d/WaterYear_AC4_D1_18O-7_2_trim_clean.PE.2.fastq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/2/covstats_WaterYear_AC4_D1_MH_2_18O.tsv         covhist=results/maps/2/covhist_WaterYear_AC4_D1_MH_2_18O.tsv         outm=stdout.sam 2> logs/maps/2/WaterYear_AC4_D1_MH_18O_mapping.log |        sambam > results/maps/2/WaterYear_AC4_D1_MH_2_18O_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_fr_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, /groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_3/raw.d/WaterYear_AC4_D1_18O-7_3_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_3/raw.d/WaterYear_AC4_D1_18O-7_3_trim_clean.PE.2.fastq.gz
+    output: results/maps/3/covstats_WaterYear_AC4_D1_MH_3_18O.tsv, results/maps/3/covhist_WaterYear_AC4_D1_MH_3_18O.tsv, results/maps/3/WaterYear_AC4_D1_MH_3_18O_mapped.sort.bam
+    log: logs/maps/3/WaterYear_AC4_D1_MH_18O_mapping.log
+    jobid: 220
+    reason: Missing output files: results/maps/3/WaterYear_AC4_D1_MH_3_18O_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    wildcards: n=3, sample=WaterYear_AC4_D1_MH, isotope=18O
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=/groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_3/raw.d/WaterYear_AC4_D1_18O-7_3_trim_clean.PE.1.fastq.gz         in2=/groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_3/raw.d/WaterYear_AC4_D1_18O-7_3_trim_clean.PE.2.fastq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/3/covstats_WaterYear_AC4_D1_MH_3_18O.tsv         covhist=results/maps/3/covhist_WaterYear_AC4_D1_MH_3_18O.tsv         outm=stdout.sam 2> logs/maps/3/WaterYear_AC4_D1_MH_18O_mapping.log |        sambam > results/maps/3/WaterYear_AC4_D1_MH_3_18O_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_fr_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_1/raw.d/WaterYear_AC4_D1_16O-7_1_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_1/raw.d/WaterYear_AC4_D1_16O-7_1_trim_clean.PE.2.fastq.gz
+    output: results/maps/1/covstats_WaterYear_AC4_D1_MH_1_16O.tsv, results/maps/1/covhist_WaterYear_AC4_D1_MH_1_16O.tsv, results/maps/1/WaterYear_AC4_D1_MH_1_16O_mapped.sort.bam
+    log: logs/maps/1/WaterYear_AC4_D1_MH_16O_mapping.log
+    jobid: 215
+    reason: Missing output files: results/maps/1/WaterYear_AC4_D1_MH_1_16O_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    wildcards: n=1, sample=WaterYear_AC4_D1_MH, isotope=16O
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=/groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_1/raw.d/WaterYear_AC4_D1_16O-7_1_trim_clean.PE.1.fastq.gz         in2=/groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_1/raw.d/WaterYear_AC4_D1_16O-7_1_trim_clean.PE.2.fastq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/1/covstats_WaterYear_AC4_D1_MH_1_16O.tsv         covhist=results/maps/1/covhist_WaterYear_AC4_D1_MH_1_16O.tsv         outm=stdout.sam 2> logs/maps/1/WaterYear_AC4_D1_MH_16O_mapping.log |        sambam > results/maps/1/WaterYear_AC4_D1_MH_1_16O_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_fr_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, /groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_4/raw.d/WaterYear_AC4_D1_18O-7_4_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_4/raw.d/WaterYear_AC4_D1_18O-7_4_trim_clean.PE.2.fastq.gz
+    output: results/maps/4/covstats_WaterYear_AC4_D1_MH_4_18O.tsv, results/maps/4/covhist_WaterYear_AC4_D1_MH_4_18O.tsv, results/maps/4/WaterYear_AC4_D1_MH_4_18O_mapped.sort.bam
+    log: logs/maps/4/WaterYear_AC4_D1_MH_18O_mapping.log
+    jobid: 222
+    reason: Missing output files: results/maps/4/WaterYear_AC4_D1_MH_4_18O_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    wildcards: n=4, sample=WaterYear_AC4_D1_MH, isotope=18O
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=/groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_4/raw.d/WaterYear_AC4_D1_18O-7_4_trim_clean.PE.1.fastq.gz         in2=/groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_4/raw.d/WaterYear_AC4_D1_18O-7_4_trim_clean.PE.2.fastq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/4/covstats_WaterYear_AC4_D1_MH_4_18O.tsv         covhist=results/maps/4/covhist_WaterYear_AC4_D1_MH_4_18O.tsv         outm=stdout.sam 2> logs/maps/4/WaterYear_AC4_D1_MH_18O_mapping.log |        sambam > results/maps/4/WaterYear_AC4_D1_MH_4_18O_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_fr_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_2/raw.d/WaterYear_AC4_D1_16O-7_2_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_2/raw.d/WaterYear_AC4_D1_16O-7_2_trim_clean.PE.2.fastq.gz
+    output: results/maps/2/covstats_WaterYear_AC4_D1_MH_2_16O.tsv, results/maps/2/covhist_WaterYear_AC4_D1_MH_2_16O.tsv, results/maps/2/WaterYear_AC4_D1_MH_2_16O_mapped.sort.bam
+    log: logs/maps/2/WaterYear_AC4_D1_MH_16O_mapping.log
+    jobid: 217
+    reason: Missing output files: results/maps/2/WaterYear_AC4_D1_MH_2_16O_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    wildcards: n=2, sample=WaterYear_AC4_D1_MH, isotope=16O
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=/groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_2/raw.d/WaterYear_AC4_D1_16O-7_2_trim_clean.PE.1.fastq.gz         in2=/groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_2/raw.d/WaterYear_AC4_D1_16O-7_2_trim_clean.PE.2.fastq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/2/covstats_WaterYear_AC4_D1_MH_2_16O.tsv         covhist=results/maps/2/covhist_WaterYear_AC4_D1_MH_2_16O.tsv         outm=stdout.sam 2> logs/maps/2/WaterYear_AC4_D1_MH_16O_mapping.log |        sambam > results/maps/2/WaterYear_AC4_D1_MH_2_16O_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_fr_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, /groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_5/raw.d/WaterYear_AC4_D1_18O-7_5_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_5/raw.d/WaterYear_AC4_D1_18O-7_5_trim_clean.PE.2.fastq.gz
+    output: results/maps/5/covstats_WaterYear_AC4_D1_MH_5_18O.tsv, results/maps/5/covhist_WaterYear_AC4_D1_MH_5_18O.tsv, results/maps/5/WaterYear_AC4_D1_MH_5_18O_mapped.sort.bam
+    log: logs/maps/5/WaterYear_AC4_D1_MH_18O_mapping.log
+    jobid: 224
+    reason: Missing output files: results/maps/5/WaterYear_AC4_D1_MH_5_18O_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    wildcards: n=5, sample=WaterYear_AC4_D1_MH, isotope=18O
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=/groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_5/raw.d/WaterYear_AC4_D1_18O-7_5_trim_clean.PE.1.fastq.gz         in2=/groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_5/raw.d/WaterYear_AC4_D1_18O-7_5_trim_clean.PE.2.fastq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/5/covstats_WaterYear_AC4_D1_MH_5_18O.tsv         covhist=results/maps/5/covhist_WaterYear_AC4_D1_MH_5_18O.tsv         outm=stdout.sam 2> logs/maps/5/WaterYear_AC4_D1_MH_18O_mapping.log |        sambam > results/maps/5/WaterYear_AC4_D1_MH_5_18O_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_fr_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_3/raw.d/WaterYear_AC4_D1_16O-7_3_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_3/raw.d/WaterYear_AC4_D1_16O-7_3_trim_clean.PE.2.fastq.gz
+    output: results/maps/3/covstats_WaterYear_AC4_D1_MH_3_16O.tsv, results/maps/3/covhist_WaterYear_AC4_D1_MH_3_16O.tsv, results/maps/3/WaterYear_AC4_D1_MH_3_16O_mapped.sort.bam
+    log: logs/maps/3/WaterYear_AC4_D1_MH_16O_mapping.log
+    jobid: 219
+    reason: Missing output files: results/maps/3/WaterYear_AC4_D1_MH_3_16O_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    wildcards: n=3, sample=WaterYear_AC4_D1_MH, isotope=16O
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=/groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_3/raw.d/WaterYear_AC4_D1_16O-7_3_trim_clean.PE.1.fastq.gz         in2=/groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_3/raw.d/WaterYear_AC4_D1_16O-7_3_trim_clean.PE.2.fastq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/3/covstats_WaterYear_AC4_D1_MH_3_16O.tsv         covhist=results/maps/3/covhist_WaterYear_AC4_D1_MH_3_16O.tsv         outm=stdout.sam 2> logs/maps/3/WaterYear_AC4_D1_MH_16O_mapping.log |        sambam > results/maps/3/WaterYear_AC4_D1_MH_3_16O_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_fr_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_4/raw.d/WaterYear_AC4_D1_16O-7_4_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_4/raw.d/WaterYear_AC4_D1_16O-7_4_trim_clean.PE.2.fastq.gz
+    output: results/maps/4/covstats_WaterYear_AC4_D1_MH_4_16O.tsv, results/maps/4/covhist_WaterYear_AC4_D1_MH_4_16O.tsv, results/maps/4/WaterYear_AC4_D1_MH_4_16O_mapped.sort.bam
+    log: logs/maps/4/WaterYear_AC4_D1_MH_16O_mapping.log
+    jobid: 221
+    reason: Missing output files: results/maps/4/WaterYear_AC4_D1_MH_4_16O_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    wildcards: n=4, sample=WaterYear_AC4_D1_MH, isotope=16O
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=/groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_4/raw.d/WaterYear_AC4_D1_16O-7_4_trim_clean.PE.1.fastq.gz         in2=/groups/banfield/sequences/2023/WaterYear_AC4_D1_16O-7_4/raw.d/WaterYear_AC4_D1_16O-7_4_trim_clean.PE.2.fastq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/4/covstats_WaterYear_AC4_D1_MH_4_16O.tsv         covhist=results/maps/4/covhist_WaterYear_AC4_D1_MH_4_16O.tsv         outm=stdout.sam 2> logs/maps/4/WaterYear_AC4_D1_MH_16O_mapping.log |        sambam > results/maps/4/WaterYear_AC4_D1_MH_4_16O_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule map_fr_reads:
+    input: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, /groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_1/raw.d/WaterYear_AC4_D1_18O-7_1_trim_clean.PE.1.fastq.gz, /groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_1/raw.d/WaterYear_AC4_D1_18O-7_1_trim_clean.PE.2.fastq.gz
+    output: results/maps/1/covstats_WaterYear_AC4_D1_MH_1_18O.tsv, results/maps/1/covhist_WaterYear_AC4_D1_MH_1_18O.tsv, results/maps/1/WaterYear_AC4_D1_MH_1_18O_mapped.sort.bam
+    log: logs/maps/1/WaterYear_AC4_D1_MH_18O_mapping.log
+    jobid: 216
+    reason: Missing output files: results/maps/1/WaterYear_AC4_D1_MH_1_18O_mapped.sort.bam; Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH
+    wildcards: n=1, sample=WaterYear_AC4_D1_MH, isotope=18O
+    resources: tmpdir=/tmp
+
+
+        bbmap.sh         in1=/groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_1/raw.d/WaterYear_AC4_D1_18O-7_1_trim_clean.PE.1.fastq.gz         in2=/groups/banfield/sequences/2023/WaterYear_AC4_D1_18O-7_1/raw.d/WaterYear_AC4_D1_18O-7_1_trim_clean.PE.2.fastq.gz         path=results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH         trimreaddescriptions=t         minid=95         ambiguous=random         threads=1         covstats=results/maps/1/covstats_WaterYear_AC4_D1_MH_1_18O.tsv         covhist=results/maps/1/covhist_WaterYear_AC4_D1_MH_1_18O.tsv         outm=stdout.sam 2> logs/maps/1/WaterYear_AC4_D1_MH_18O_mapping.log |        sambam > results/maps/1/WaterYear_AC4_D1_MH_1_18O_mapped.sort.bam
+        
+
+[Sun Nov 19 01:56:32 2023]
+rule get_count_table:
+    input: results/maps/t0/WaterYear_AC4_D1_MH_t0_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_MH_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_MH_1_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_MH_1_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_MH_1_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_MH_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_MH_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_MH_2_16O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_MH_2_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_MH_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_MH_3_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_MH_3_16O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_MH_3_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_MH_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_MH_4_18O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_MH_4_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_MH_4_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_MH_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_MH_5_18O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_MH_5_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_MH_5_18O_mapped.sort.bam
+    output: results/WaterYear_AC4_D1_MH/WaterYear_AC4_D1_MH_count_table.tsv
+    jobid: 213
+    reason: Missing output files: results/WaterYear_AC4_D1_MH/WaterYear_AC4_D1_MH_count_table.tsv; Input files updated by another job: results/maps/4/WaterYear_AC4_D1_MH_4_18O_mapped.sort.bam, results/maps/t0/WaterYear_AC4_D1_MH_t0_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_MH_2_18O_mapped.sort.bam, results/maps/2/WaterYear_AC4_D1_MH_2_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_MH_5_16O_mapped.sort.bam, results/maps/4/WaterYear_AC4_D1_MH_4_16O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_MH_1_16O_mapped.sort.bam, results/maps/5/WaterYear_AC4_D1_MH_5_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_MH_3_18O_mapped.sort.bam, results/maps/1/WaterYear_AC4_D1_MH_1_18O_mapped.sort.bam, results/maps/3/WaterYear_AC4_D1_MH_3_16O_mapped.sort.bam
+    wildcards: sample=WaterYear_AC4_D1_MH
+    resources: tmpdir=/tmp
+
+
+        coverm contig         --bam-files results/maps/t0/WaterYear_AC4_D1_MH_t0_mapped.sort.bam results/maps/1/WaterYear_AC4_D1_MH_1_16O_mapped.sort.bam results/maps/1/WaterYear_AC4_D1_MH_1_18O_mapped.sort.bam results/maps/1/WaterYear_AC4_D1_MH_1_16O_mapped.sort.bam results/maps/1/WaterYear_AC4_D1_MH_1_18O_mapped.sort.bam results/maps/2/WaterYear_AC4_D1_MH_2_16O_mapped.sort.bam results/maps/2/WaterYear_AC4_D1_MH_2_18O_mapped.sort.bam results/maps/2/WaterYear_AC4_D1_MH_2_16O_mapped.sort.bam results/maps/2/WaterYear_AC4_D1_MH_2_18O_mapped.sort.bam results/maps/3/WaterYear_AC4_D1_MH_3_16O_mapped.sort.bam results/maps/3/WaterYear_AC4_D1_MH_3_18O_mapped.sort.bam results/maps/3/WaterYear_AC4_D1_MH_3_16O_mapped.sort.bam results/maps/3/WaterYear_AC4_D1_MH_3_18O_mapped.sort.bam results/maps/4/WaterYear_AC4_D1_MH_4_16O_mapped.sort.bam results/maps/4/WaterYear_AC4_D1_MH_4_18O_mapped.sort.bam results/maps/4/WaterYear_AC4_D1_MH_4_16O_mapped.sort.bam results/maps/4/WaterYear_AC4_D1_MH_4_18O_mapped.sort.bam results/maps/5/WaterYear_AC4_D1_MH_5_16O_mapped.sort.bam results/maps/5/WaterYear_AC4_D1_MH_5_18O_mapped.sort.bam results/maps/5/WaterYear_AC4_D1_MH_5_16O_mapped.sort.bam results/maps/5/WaterYear_AC4_D1_MH_5_18O_mapped.sort.bam         -m count         -o results/WaterYear_AC4_D1_MH/WaterYear_AC4_D1_MH_count_table.tsv         -t 1         --min-read-percent-identity 99
+        
+Would remove temporary output results/maps/t0/WaterYear_AC4_D1_MH_t0_mapped.sort.bam
+Would remove temporary output results/maps/1/WaterYear_AC4_D1_MH_1_16O_mapped.sort.bam
+Would remove temporary output results/maps/1/WaterYear_AC4_D1_MH_1_18O_mapped.sort.bam
+Would remove temporary output results/maps/2/WaterYear_AC4_D1_MH_2_16O_mapped.sort.bam
+Would remove temporary output results/maps/2/WaterYear_AC4_D1_MH_2_18O_mapped.sort.bam
+Would remove temporary output results/maps/3/WaterYear_AC4_D1_MH_3_16O_mapped.sort.bam
+Would remove temporary output results/maps/3/WaterYear_AC4_D1_MH_3_18O_mapped.sort.bam
+Would remove temporary output results/maps/4/WaterYear_AC4_D1_MH_4_16O_mapped.sort.bam
+Would remove temporary output results/maps/4/WaterYear_AC4_D1_MH_4_18O_mapped.sort.bam
+Would remove temporary output results/maps/5/WaterYear_AC4_D1_MH_5_16O_mapped.sort.bam
+Would remove temporary output results/maps/5/WaterYear_AC4_D1_MH_5_18O_mapped.sort.bam
+
+[Sun Nov 19 01:56:32 2023]
+localrule all:
+    input: results/scaffolds/WaterYear_AC3_D1_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC3_D3_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC3_D5_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC4_D1_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC4_D3_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC4_D5_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC5_D1_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC5_D3_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC5_D5_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC7_D1_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC7_D3_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC7_D5_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC9_D3_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC9_D5_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC9_D1_coass-16O-0-7_scaffold.fa, results/scaffolds/WaterYear_AC4_D1_MH_scaffold.fa, results/WaterYear_AC3_D1_coass-16O-0-7/bbmap_ref/WaterYear_AC3_D1_coass-16O-0-7, results/WaterYear_AC3_D3_coass-16O-0-7/bbmap_ref/WaterYear_AC3_D3_coass-16O-0-7, results/WaterYear_AC3_D5_coass-16O-0-7/bbmap_ref/WaterYear_AC3_D5_coass-16O-0-7, results/WaterYear_AC4_D1_coass-16O-0-7/bbmap_ref/WaterYear_AC4_D1_coass-16O-0-7, results/WaterYear_AC4_D3_coass-16O-0-7/bbmap_ref/WaterYear_AC4_D3_coass-16O-0-7, results/WaterYear_AC4_D5_coass-16O-0-7/bbmap_ref/WaterYear_AC4_D5_coass-16O-0-7, results/WaterYear_AC5_D1_coass-16O-0-7/bbmap_ref/WaterYear_AC5_D1_coass-16O-0-7, results/WaterYear_AC5_D3_coass-16O-0-7/bbmap_ref/WaterYear_AC5_D3_coass-16O-0-7, results/WaterYear_AC5_D5_coass-16O-0-7/bbmap_ref/WaterYear_AC5_D5_coass-16O-0-7, results/WaterYear_AC7_D1_coass-16O-0-7/bbmap_ref/WaterYear_AC7_D1_coass-16O-0-7, results/WaterYear_AC7_D3_coass-16O-0-7/bbmap_ref/WaterYear_AC7_D3_coass-16O-0-7, results/WaterYear_AC7_D5_coass-16O-0-7/bbmap_ref/WaterYear_AC7_D5_coass-16O-0-7, results/WaterYear_AC9_D3_coass-16O-0-7/bbmap_ref/WaterYear_AC9_D3_coass-16O-0-7, results/WaterYear_AC9_D5_coass-16O-0-7/bbmap_ref/WaterYear_AC9_D5_coass-16O-0-7, results/WaterYear_AC9_D1_coass-16O-0-7/bbmap_ref/WaterYear_AC9_D1_coass-16O-0-7, results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, results/WaterYear_AC3_D1_coass-16O-0-7/WaterYear_AC3_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC3_D3_coass-16O-0-7/WaterYear_AC3_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC3_D5_coass-16O-0-7/WaterYear_AC3_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC4_D1_coass-16O-0-7/WaterYear_AC4_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC4_D3_coass-16O-0-7/WaterYear_AC4_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC4_D5_coass-16O-0-7/WaterYear_AC4_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC5_D1_coass-16O-0-7/WaterYear_AC5_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC5_D3_coass-16O-0-7/WaterYear_AC5_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC5_D5_coass-16O-0-7/WaterYear_AC5_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC7_D1_coass-16O-0-7/WaterYear_AC7_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC7_D3_coass-16O-0-7/WaterYear_AC7_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC7_D5_coass-16O-0-7/WaterYear_AC7_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC9_D3_coass-16O-0-7/WaterYear_AC9_D3_coass-16O-0-7_count_table.tsv, results/WaterYear_AC9_D5_coass-16O-0-7/WaterYear_AC9_D5_coass-16O-0-7_count_table.tsv, results/WaterYear_AC9_D1_coass-16O-0-7/WaterYear_AC9_D1_coass-16O-0-7_count_table.tsv, results/WaterYear_AC4_D1_MH/WaterYear_AC4_D1_MH_count_table.tsv
+    jobid: 0
+    reason: Input files updated by another job: results/WaterYear_AC4_D1_MH/bbmap_ref/WaterYear_AC4_D1_MH, results/WaterYear_AC4_D1_MH/WaterYear_AC4_D1_MH_count_table.tsv, results/scaffolds/WaterYear_AC4_D1_MH_scaffold.fa
+    resources: tmpdir=/tmp
+
+Job stats:
+job                     count
+--------------------  -------
+all                         1
+generate_bbmap_index        1
+get_count_table             1
+link_input_files            1
+map_fr_reads               10
+map_t0_reads                1
+total                      15
+
+Reasons:
+    (check individual jobs above for details)
+    input files updated by another job:
+        all, generate_bbmap_index, get_count_table, map_fr_reads, map_t0_reads
+    missing output files:
+        generate_bbmap_index, get_count_table, link_input_files, map_fr_reads, map_t0_reads
+
+This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
