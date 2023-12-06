@@ -28,7 +28,8 @@ rule all:
     input:
         expand("results/scaffolds/{sample}_scaffold.fa", 
                 sample=sample_to_info.keys(),
-        ), 
+        ),
+        #"results/merged_scaffold/bbmap_ref",
         expand("results/{sample}/bbmap_ref/{sample}", 
                 sample=sample_to_info.keys(),
         ),
@@ -37,12 +38,10 @@ rule all:
         #         n=sorted(fractions),
         #         isotope=config["isotopes"],
         # ),
-        expand("results/{sample}/{sample}_count_table.tsv", 
-                sample=sample_to_info.keys(),
-        ),
+        expand("results/count_table2.tsv"),
 
 
-localrules: link_input_files
+localrules: link_input_files, link_fr_reads
 
 rule link_input_files:
     input:
@@ -65,6 +64,83 @@ rule link_input_files:
         ln -s {input.bins_path} {output.linked_bins_path}
         """
 
+rule link_fr_reads:
+    input:
+        fw_reads = lambda wildcards: sample_to_info[wildcards.sample][f"fraction_{wildcards.n}_{wildcards.isotope}_fw"],
+        rv_reads = lambda wildcards: sample_to_info[wildcards.sample][f"fraction_{wildcards.n}_{wildcards.isotope}_rv"],
+    output:
+        fw_reads_link = "results/reads/{n}/{sample}_{n}_{isotope}_fw.fq.gz",
+        rv_reads_link = "results/reads/{n}/{sample}_{n}_{isotope}_rv.fq.gz",
+    wildcard_constraints:
+        n=fraction_loop_regex,
+        isotope=config["isotope_regex"],
+        #sample=sample_to_info.keys(),
+    group:
+        1
+    shell:
+        """
+        ln -s {input.fw_reads} {output.fw_reads_link}
+        ln -s {input.rv_reads} {output.rv_reads_link}
+        """
+
+# rule merge_index_scaffolds:
+#     input:
+#         scaffold_path = expand("results/scaffolds/{sample}_scaffold.fa",
+#                                 sample=sample_to_info.keys(),
+#         ),
+#     output:
+#         merged_scaffold_path = temp("results/scaffolds/scaffold_merged.fa"),
+#     shell:
+#         """
+#         cat {input.scaffold_path} >> {output.merged_scaffold_path}
+#         """
+
+# rule cluster_scaffolds:
+#     input:
+#         scaffold_path = "results/scaffolds/scaffold_merged.fa",
+#     output:
+#         cluster_fasta = "results/scaffolds/scaffold_merged_cluster_rep_seq.fasta",
+#         cluster_tsv = "results/scaffolds/scaffold_merged_cluster_cluster.tsv",
+#         cluster_all_seqs = temp("results/scaffolds/scaffold_merged_cluster_all_seqs.fasta")
+#     params:
+#         out_name = "results/scaffolds/scaffold_merged_cluster",
+#     threads: config["max_threads"],
+#     log:
+#         "logs/scaffolds/scaffold_merged_cluster.log"
+#     benchmark:
+#         "benchmarks/scaffolds/scaffold_merged_cluster.tsv"
+#     shell:
+#         """
+#         mmseqs easy-cluster \
+#         {input.scaffold_path} \
+#         {params.out_name} \
+#         tmp \
+#         --threads {threads} \
+#         """
+# rule generate_bbmap_index:
+#     input:
+#         scaffold_path = "results/scaffolds/scaffold_merged.fa",
+#     output:
+#         index=temp(directory("results/merged_scaffold/bbmap_ref")),
+#     log:
+#         "results/merged_scaffold/merged_scaffold_bbmap_index.log",
+#     threads: config["max_threads"]
+#     benchmark:
+#         "benchmarks/merged_scaffold_bbmap_index.tsv"
+#     conda:
+#         "envs/bbmap.yaml"
+#     shell:
+#         """
+#         bbmap.sh \
+#         reference={input.scaffold_path} \
+#         path={output.index} \
+#         threads={threads} \
+#         &> {log}
+#         """
+
+
+
+
 rule generate_bbmap_index:
     input:
         scaffold_path = "results/scaffolds/{sample}_scaffold.fa",
@@ -73,6 +149,8 @@ rule generate_bbmap_index:
     log:
         "results/{sample}/{sample}_bbmap_index.log",
     threads: config["max_threads"]
+    benchmark:
+        "benchmarks/index/{sample}_bbmap_index.tsv"
     conda:
         "envs/bbmap.yaml"
     shell:
@@ -92,21 +170,24 @@ def get_rv_reads(wcs):
 rule map_fr_reads:
     input:
         index = "results/{sample}/bbmap_ref/{sample}",
-        fw_reads_path = get_fw_reads,
-        rv_reads_path = get_rv_reads,
+        fw_reads_path = "results/reads/{n}/{sample_map}_{n}_{isotope}_fw.fq.gz",
+        rv_reads_path = "results/reads/{n}/{sample_map}_{n}_{isotope}_rv.fq.gz",
     output:
-        coverage_stats = "results/maps/{n}/covstats_{sample}_{n}_{isotope}.tsv",
-        coverage_hist = "results/maps/{n}/covhist_{sample}_{n}_{isotope}.tsv",
-        mapping = temp("results/maps/{n}/{sample}_{n}_{isotope}_mapped.sort.bam"),
+        coverage_stats = "results/maps/{n}/covstats_{sample}-v-{sample_map}_{n}_{isotope}.tsv",
+        coverage_hist = "results/maps/{n}/covhist_{sample}-v-{sample_map}_{n}_{isotope}.tsv",
+        mapping = temp("results/maps/{n}/{sample}-v-{sample_map}_{n}_{isotope}_mapped.sort.bam"),
     wildcard_constraints:
         n=fraction_loop_regex,
         isotope=config["isotope_regex"],
     log:
-        "logs/maps/{n}/{sample}_{isotope}_mapping.log"
+        "logs/maps/{n}/{sample}-v-{sample_map}_{n}_{isotope}_mapped.log"
     params:
         ambiguous="random",
         minid=config["min_map_id"],
+        perfectmode=config["perfectmode"],
     threads: config["max_threads"]
+    benchmark:
+        "benchmarks/maps/{n}/{sample}-v-{sample_map}_{n}_{isotope}_mapped.tsv"
     conda:
         "envs/bbmap.yaml"
     shell:
@@ -116,7 +197,7 @@ rule map_fr_reads:
         in2={input.rv_reads_path} \
         path={input.index} \
         trimreaddescriptions=t \
-        minid={params.minid} \
+        perfectmode={params.perfectmode} \
         ambiguous={params.ambiguous} \
         threads={threads} \
         covstats={output.coverage_stats} \
@@ -128,18 +209,21 @@ rule map_fr_reads:
 rule map_t0_reads:
     input:
         index = "results/{sample}/bbmap_ref/{sample}",
-        t0_fw = "results/reads/t0/{sample}_t0_fw.fq.gz",
-        t0_rv = "results/reads/t0/{sample}_t0_rv.fq.gz",
+        t0_fw = "results/reads/t0/{sample_map}_t0_fw.fq.gz",
+        t0_rv = "results/reads/t0/{sample_map}_t0_rv.fq.gz",
     output:
-        coverage_stats = "results/maps/t0/covstats_{sample}.txt",
-        coverage_hist = "results/maps/t0/covhist_{sample}.txt",
-        mapping = temp("results/maps/t0/{sample}_t0_mapped.sort.bam"),
+        coverage_stats = "results/maps/t0/covstats_{sample}-v-{sample_map}.txt",
+        coverage_hist = "results/maps/t0/covhist_{sample}-v-{sample_map}.txt",
+        mapping = temp("results/maps/t0/{sample}-v-{sample_map}_t0_mapped.sort.bam"),
     log:
-        "logs/maps/t0/{sample}_t0_mapping.log"
+        "logs/maps/t0/{sample}-v-{sample_map}_t0_mapping.log"
     params:
         ambiguous="random",
         minid=config["min_map_id"],
+        perfectmode=config["perfectmode"],
     threads: config["max_threads"]
+    benchmark:
+        "benchmarks/maps/t0/{sample}-v-{sample_map}_t0_mapping.tsv"
     conda:
         "envs/bbmap.yaml"
     shell:
@@ -149,7 +233,7 @@ rule map_t0_reads:
         in2={input.t0_rv} \
         path={input.index} \
         trimreaddescriptions=t \
-        minid={params.minid} \
+        perfectmode={params.perfectmode} \
         ambiguous={params.ambiguous} \
         threads={threads} \
         covstats={output.coverage_stats} \
@@ -160,21 +244,34 @@ rule map_t0_reads:
 
 rule get_count_table:
     input:
-        t0_map = "results/maps/t0/{sample}_t0_mapped.sort.bam",
-        fr_maps = expand("results/maps/{n}/{{sample}}_{n}_{isotope}_mapped.sort.bam",
+        t0_map = expand("results/maps/t0/{sample}-v-{sample_map}_t0_mapped.sort.bam",
+                        sample=sample_to_info.keys(),
+                        sample_map=sample_to_info.keys()),
+        fr_maps = sorted(list(set(expand("results/maps/{n}/{sample}-v-{sample_map}_{n}_{isotope}_mapped.sort.bam",
+                        sample=sample_to_info.keys(),
+                        sample_map=sample_to_info.keys(),
                         n=sorted(fractions),
-                        isotope=config["isotopes"]),
+                        isotope=config["isotopes"])))),
     output:
-        count_table = "results/{sample}/{sample}_count_table.tsv",
+        count_table = "results/count_table2.tsv",
+        tpm_table = "results/tpm_table.tsv",
     params:
         min_read_perc_id=config["coverm_perc_id"],
     threads: config["max_threads"]
+    benchmark:
+        "benchmarks/count_table.tsv"
     shell:
         """
         coverm contig \
         --bam-files {input.t0_map} {input.fr_maps} \
         -m count \
         -o {output.count_table} \
+        -t {threads} \
+        --min-read-percent-identity {params.min_read_perc_id}
+        coverm contig \
+        --bam-files {input.t0_map} {input.fr_maps} \
+        -m tpm \
+        -o {output.tpm_table} \
         -t {threads} \
         --min-read-percent-identity {params.min_read_perc_id}
         """

@@ -3,3 +3,5 @@
 results/*
 logs/*
 slurm_out/*
+tmp*
+.snakemake/incomplete*

@@ -3,7 +3,8 @@ proteins: config/proteins.tsv
 
 max_threads: 10000
 
-min_map_id: 95
+perfectmode: t
+min_map_id: 0.99
 coverm_perc_id: 99
 
 isotope_regex: "16O|18O"
