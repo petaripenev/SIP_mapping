@@ -1,7 +1,10 @@
 .snakemake/conda*
 .snakemake/metadata*
+.snakemake/locks/*
 results/*
+benchmarks/*
 logs/*
 slurm_out/*
 tmp*
 .snakemake/incomplete*
+samtools.*
