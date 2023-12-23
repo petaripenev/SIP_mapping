@@ -1,6 +1,7 @@
 .snakemake/conda*
 .snakemake/metadata*
 .snakemake/locks/*
+.snakemake/log*
 results/*
 benchmarks/*
 logs/*
