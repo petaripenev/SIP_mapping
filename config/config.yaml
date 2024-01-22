@@ -1,6 +1,6 @@
 samples: config/samples_ssf.tsv
 
-max_threads: 10000
+max_threads: 4
 
 perfectmode: t
 min_map_id: 0.99
@@ -10,6 +10,8 @@ coverm_perc_id: 99
 #When this is is set to true the column `scaffolds_path` in samples.tsv 
 #should have the same entry for all samples! 
 single_scaffold_file: t #t or f
+
+output_prefix: "AC_S3_scg" #"AC3_D1_full_coass.metabat2.151990"
 
 isotope_regex: "16O|18O"
 isotopes: ["16O", "18O"]
