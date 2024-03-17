@@ -23,6 +23,7 @@ The following parameters can be set in [`config.yaml`](config/config.yaml):
 * `min_map_id`: minimum mapping identity to keep a read. Default is 0.99.
 * `coverm_perc_id`: minimum identity to count a read towards coverage calculation. Default is 0.99.
 * `single_scaffold_mode`: `t` or `f`. If set to `t`, the pipeline will assume that all entries in column `scaffolds_path` of [`samples.tsv`](config/samples.tsv) point to the same scaffold. This mode is meant to be used if you have a specific gene of interest, have isolated all of its matches within the project, and clustered them down to a representative set. If set to `f`, the pipeline will perform an all versus all mapping between the scaffolds and reads.
+* `output_prefix`: prefix to prepend to the output files in the results folder. Most useful for differentiating runs with `single_scaffold_mode`, using the same reads but different scaffolds.
 * `isotope_regex`: regular expression to match the isotope name in the fraction file names. Default is `"16O|18O"`. If you are working with 12C/13C, change this to `"12C|13C"`. Should match with the fraction column names in [`samples.tsv`](config/samples.tsv).
 * `isotopes`: list of isotope names to use in the output. Default is `["16O", "18O"]`. If you are working with 12C/13C, change this to `["12C", "13C"]`. Should match with the fraction column names in [`samples.tsv`](config/samples.tsv).
 
