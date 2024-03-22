@@ -1,4 +1,4 @@
-samples: config/samples_full.tsv
+samples: config/samples_full_vir.tsv
 
 max_threads: 4
 
@@ -6,13 +6,17 @@ perfectmode: t
 min_map_id: 0.99
 coverm_perc_id: 99
 
+# Mapper choice bbmap or bowtie2
+mapper: bowtie2 #bbmap
+
 #Option to perform mapping and counting based on a single scaffold file.
 #When this is is set to true the column `scaffolds_path` in samples.tsv 
 #should have the same entry for all samples! 
 single_scaffold_file: t #t or f
 
-output_prefix: "WY"
+output_prefix: "WY_VIR"
 #"AC_S3_scg" "AC3_D1_full_coass.metabat2.151990_AD1"
 
 isotope_regex: "16O|18O"
 isotopes: ["16O", "18O"]
+incubation_times: ["0", "7"]

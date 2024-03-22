@@ -16,9 +16,10 @@ for header_col in df_sample:
         df_sample[fr_rev] = df_sample[header_col].apply(lambda x: x.replace(".PE.1.fastq.gz", ".PE.2.fastq.gz"))
         if fraction not in fractions:
             fractions.append(int(fraction))
-    if header_col.startswith("t0_"):
-        fwrv = header_col.split("_")[1]
-        df_sample["t0_rv"] = df_sample[header_col].apply(lambda x: x.replace(".PE.1.fastq.gz", ".PE.2.fastq.gz"))
+    for inc_time in config["incubation_times"]:
+        if header_col.startswith(f"t{inc_time}_"):
+            fwrv = header_col.split("_")[1]
+            df_sample[f"t{inc_time}_rv"] = df_sample[header_col].apply(lambda x: x.replace(".PE.1.fastq.gz", ".PE.2.fastq.gz"))
 
 #print(df_sample.to_markdown())
 fraction_loop_regex = f"[{min(fractions)}-{max(fractions)}]+"
@@ -37,13 +38,14 @@ output_list = [
             sample=sample_to_info.keys(),) if config["single_scaffold_file"] == 'f' \
      else f"results/scaffolds/{config['output_prefix']}_scaffold.fa" if config["single_scaffold_file"] == 't' \
      else SINGLE_SCAFFOLD_ERROR,
-    expand("results/reads/t0/{sample}_t0_fw.fq.gz", 
+    expand("results/reads/t{inc_time}/{sample}_t{inc_time}_fw.fq.gz", 
             sample=sample_to_info.keys(),
+            inc_time=config["incubation_times"],
     ),
-    #"results/merged_scaffold/bbmap_ref",
-    expand("results/{sample}/bbmap_ref/{sample}", 
+    #"results/merged_scaffold/ref_index",
+    expand("results/{sample}/ref_index/{sample}", 
             sample=sample_to_info.keys(),) if config["single_scaffold_file"] == 'f' \
-      else f"results/{config['output_prefix']}_bbmap_ref" if config["single_scaffold_file"] == 't' \
+      else f"results/{config['output_prefix']}_ref_index" if config["single_scaffold_file"] == 't' \
       else SINGLE_SCAFFOLD_ERROR,
     # expand("results/maps/{n}/{sample}_{n}_{isotope}_mapped.sort.bam", 
     #         sample=sample_to_info.keys(),
@@ -59,6 +61,12 @@ output_list = [
     #     sample=sample_to_info.keys(),) if config["single_scaffold_file"] == 'f' \
     #   else "results/counts/tpm_table.tsv" if config["single_scaffold_file"] == 't' \
     #   else SINGLE_SCAFFOLD_ERROR,
+    expand("results/maps/{sample}/{sample}_merged_mapped.sort.bam",
+        sample=sample_to_info.keys(),) if config["single_scaffold_file"] == 'f' \
+      else expand(f"results/maps/{config['output_prefix']}/"+"{sample}_merged_mapped.sort.bam",
+        sample=sample_to_info.keys(),) if config["single_scaffold_file"] == 't' \
+      else SINGLE_SCAFFOLD_ERROR,
+
 ]
 
 if config['single_scaffold_file'] == 'f':
@@ -88,21 +96,23 @@ rule link_scaffolds_path:
 
 rule link_input_files:
     input:
-        t0_fw = lambda wildcards: sample_to_info[wildcards.sample]["t0_fw"],
-        t0_rv = lambda wildcards: sample_to_info[wildcards.sample]["t0_rv"],
-        bins_path = lambda wildcards: sample_to_info[wildcards.sample]["contig_to_bin"],
+        unfr_fw = lambda wildcards: sample_to_info[wildcards.sample][f"t{wildcards.inc_time}_fw"],
+        unfr_rv = lambda wildcards: sample_to_info[wildcards.sample][f"t{wildcards.inc_time}_rv"],
+        #bins_path = lambda wildcards: sample_to_info[wildcards.sample]["contig_to_bin"],
     output:
-        t0_fw_link = "results/reads/t0/{sample}_t0_fw.fq.gz",
-        t0_rv_link = "results/reads/t0/{sample}_t0_rv.fq.gz",
-        linked_bins_path = "results/dastool_bins/{sample}.dastool.contig_to_bin.tsv",
+        unfr_fw_link = "results/reads/t{inc_time}/{sample}_t{inc_time}_fw.fq.gz",
+        unfr_rv_link = "results/reads/t{inc_time}/{sample}_t{inc_time}_rv.fq.gz",
+        #linked_bins_path = "results/dastool_bins/{sample}.dastool.contig_to_bin.tsv",
+    wildcard_constraints:
+        inc_time=config["incubation_times"],
     group:
         1
     shell:
         """
-        ln -s {input.t0_fw} {output.t0_fw_link}
-        ln -s {input.t0_rv} {output.t0_rv_link}
-        ln -s {input.bins_path} {output.linked_bins_path}
+        ln -s {input.unfr_fw} {output.unfr_fw_link}
+        ln -s {input.unfr_rv} {output.unfr_rv_link}
         """
+        #ln -s {input.bins_path} {output.linked_bins_path}
 
 rule link_fr_reads:
     input:
@@ -122,136 +132,24 @@ rule link_fr_reads:
         ln -s {input.rv_reads} {output.rv_reads_link}
         """
 
-rule generate_bbmap_index:
-    input:
-        scaffold_path = "results/scaffolds/{sample}_scaffold.fa" if config["single_scaffold_file"] == 'f' \
-                   else f"results/scaffolds/{config['output_prefix']}_scaffold.fa" if config["single_scaffold_file"] == 't' \
-                   else SINGLE_SCAFFOLD_ERROR,
-    output:
-        index=directory("results/{sample}/bbmap_ref/{sample}") if config["single_scaffold_file"] == 'f' \
-                   else directory(f"results/{config['output_prefix']}_bbmap_ref") if config["single_scaffold_file"] == 't' \
-                   else SINGLE_SCAFFOLD_ERROR,
-    log:
-        "results/{sample}/{sample}_bbmap_index.log" if config["single_scaffold_file"] == 'f' \
-        else "results/bbmap_index.log" if config["single_scaffold_file"] == 't' \
-        else SINGLE_SCAFFOLD_ERROR,
-    threads: config["max_threads"]
-    benchmark:
-        "benchmarks/index/{sample}_bbmap_index.tsv" if config["single_scaffold_file"] == 'f' \
-        else "benchmarks/index/bbmap_index.tsv" if config["single_scaffold_file"] == 't' \
-        else SINGLE_SCAFFOLD_ERROR,
-    conda:
-        "envs/bbmap.yaml"
-    shell:
-        """
-        bbmap.sh \
-        reference={input.scaffold_path} \
-        path={output.index} \
-        threads={threads} \
-        &> {log}
-        """
-
 def get_fw_reads(wcs):
     return sample_to_info[wcs.sample][f"fraction_{wcs.n}_{wcs.isotope}_fw"]
 def get_rv_reads(wcs):
     return sample_to_info[wcs.sample][f"fraction_{wcs.n}_{wcs.isotope}_rv"]
 
-rule map_fr_reads:
-    input:
-        index = "results/{sample}/bbmap_ref/{sample}" if config["single_scaffold_file"] == 'f' \
-           else "results/{output_prefix}_bbmap_ref" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-        fw_reads_path = "results/reads/{n}/{sample_map}_{n}_{isotope}_fw.fq.gz",
-        rv_reads_path = "results/reads/{n}/{sample_map}_{n}_{isotope}_rv.fq.gz",
-    output:
-        coverage_stats = "results/maps/{n}/covstats_{sample}-v-{sample_map}_{n}_{isotope}.tsv" if config["single_scaffold_file"] == 'f' \
-                    else "results/maps/{output_prefix}/{n}/covstats_{sample_map}_{n}_{isotope}.tsv" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-        coverage_hist = "results/maps/{n}/covhist_{sample}-v-{sample_map}_{n}_{isotope}.tsv" if config["single_scaffold_file"] == 'f' \
-                   else "results/maps/{output_prefix}/{n}/covhist_{sample_map}_{n}_{isotope}.tsv" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-        mapping = "results/maps/{n}/{sample}-v-{sample_map}_{n}_{isotope}_mapped.sort.bam" if config["single_scaffold_file"] == 'f' \
-             else "results/maps/{output_prefix}/{n}/{sample_map}_{n}_{isotope}_mapped.sort.bam" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-    wildcard_constraints:
-        output_prefix=config["output_prefix"],
-        n=fraction_loop_regex,
-        isotope=config["isotope_regex"],
-    log:
-        "logs/maps/{n}/{sample}-v-{sample_map}_{n}_{isotope}_mapped.log" if config["single_scaffold_file"] == 'f' \
-        else "logs/maps/{output_prefix}/{n}/{sample_map}_{n}_{isotope}_mapped.log" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-    params:
-        ambiguous="random",
-        minid=config["min_map_id"],
-        perfectmode=config["perfectmode"],
-    threads: config["max_threads"]
-    benchmark:
-        "benchmarks/maps/{n}/{sample}-v-{sample_map}_{n}_{isotope}_mapped.tsv" if config["single_scaffold_file"] == 'f' \
-        else "benchmarks/maps/{output_prefix}/{n}/{sample_map}_{n}_{isotope}_mapped.tsv" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-    conda:
-        "envs/bbmap.yaml"
-    shell:
-        """
-        bbmap.sh \
-        in1={input.fw_reads_path} \
-        in2={input.rv_reads_path} \
-        path={input.index} \
-        trimreaddescriptions=t \
-        perfectmode={params.perfectmode} \
-        ambiguous={params.ambiguous} \
-        threads={threads} \
-        covstats={output.coverage_stats} \
-        covhist={output.coverage_hist} \
-        outm=stdout.sam 2> {log} |\
-        sambam > {output.mapping}
-        """
-
-rule map_t0_reads:
-    input:
-        index = "results/{sample}/bbmap_ref/{sample}" if config["single_scaffold_file"] == 'f' \
-           else "results/{output_prefix}_bbmap_ref" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-        t0_fw = "results/reads/t0/{sample_map}_t0_fw.fq.gz",
-        t0_rv = "results/reads/t0/{sample_map}_t0_rv.fq.gz",
-    output:
-        coverage_stats = "results/maps/t0/covstats_{sample}-v-{sample_map}.txt" if config["single_scaffold_file"] == 'f' \
-                    else "results/maps/{output_prefix}/t0/covstats_{sample_map}.txt" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-        coverage_hist = "results/maps/t0/covhist_{sample}-v-{sample_map}.txt" if config["single_scaffold_file"] == 'f' \
-                   else "results/maps/{output_prefix}/t0/covhist_{sample_map}.txt" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-        mapping = "results/maps/t0/{sample}-v-{sample_map}_t0_mapped.sort.bam" if config["single_scaffold_file"] == 'f' \
-             else "results/maps/{output_prefix}/t0/{sample_map}_t0_mapped.sort.bam" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-    log:
-        "logs/maps/t0/{sample}-v-{sample_map}_t0_mapping.log" if config["single_scaffold_file"] == 'f' \
-        else "logs/maps/{output_prefix}/t0/{sample_map}_t0_mapping.log" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-    wildcard_constraints:
-        output_prefix=config["output_prefix"],
-    params:
-        ambiguous="random",
-        minid=config["min_map_id"],
-        perfectmode=config["perfectmode"],
-    threads: config["max_threads"]
-    benchmark:
-        "benchmarks/maps/t0/{sample}-v-{sample_map}_t0_mapping.tsv" if config["single_scaffold_file"] == 'f' \
-        else "benchmarks/maps/{output_prefix}/t0/{sample_map}_t0_mapping.tsv" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
-    conda:
-        "envs/bbmap.yaml"
-    shell:
-        """
-        bbmap.sh \
-        in1={input.t0_fw} \
-        in2={input.t0_rv} \
-        path={input.index} \
-        trimreaddescriptions=t \
-        perfectmode={params.perfectmode} \
-        ambiguous={params.ambiguous} \
-        threads={threads} \
-        covstats={output.coverage_stats} \
-        covhist={output.coverage_hist} \
-        outm=stdout.sam 2> {log} |\
-        sambam > {output.mapping}
-        """
+if config["mapper"] == "bbmap":
+    include: "rules/map_bbmap.smk"
+elif config["mapper"] == "bowtie2":
+    include: "rules/map_bowtie2.smk"
+else:
+    raise ValueError(f"Mapper {config['mapper']} not supported!")
 
 rule get_count_table:
     input:
-        t0_map = expand("results/maps/t0/{{sample}}-v-{sample_map}_t0_mapped.sort.bam",
-                        sample_map=sample_to_info.keys()) if config["single_scaffold_file"] == 'f' \
-            else expand("results/maps/{output_prefix}/t0/{sample_map}_t0_mapped.sort.bam",
-                        sample_map=sample_to_info.keys(), output_prefix=config['output_prefix']) if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
+        unfr_map = expand("results/maps/t{inc_time}/{{sample}}-v-{sample_map}_t{inc_time}_mapped.sort.bam",
+                        sample_map=sample_to_info.keys(), inc_time=config["incubation_times"]) if config["single_scaffold_file"] == 'f' \
+            else expand("results/maps/{output_prefix}/t{inc_time}/{sample_map}_t{inc_time}_mapped.sort.bam",
+                        sample_map=sample_to_info.keys(), output_prefix=config['output_prefix'], inc_time=config["incubation_times"]) if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
         fr_maps = sorted(list(set(expand("results/maps/{n}/{{sample}}-v-{sample_map}_{n}_{isotope}_mapped.sort.bam",
                         sample_map=sample_to_info.keys(), n=sorted(fractions), isotope=config["isotopes"])))) if config["single_scaffold_file"] == 'f' \
              else sorted(list(set(expand("results/maps/{output_prefix}/{n}/{sample_map}_{n}_{isotope}_mapped.sort.bam",
@@ -275,12 +173,36 @@ rule get_count_table:
     shell:
         """
         coverm contig \
-        --bam-files {input.t0_map} {input.fr_maps} \
+        --bam-files {input.unfr_map} {input.fr_maps} \
         -m {wildcards.cov_calc_method} \
         -o {output.count_table} \
         -t {threads} \
         --min-read-percent-identity {params.min_read_perc_id} \
         > {log}
+        """
+
+rule merge_bams:
+    input:
+        unfr_map = expand("results/maps/t{inc_time}/{{sample}}-v-{sample_map}_t{inc_time}_mapped.sort.bam",
+                        sample_map=sample_to_info.keys(), inc_time=config["incubation_times"]) if config["single_scaffold_file"] == 'f' \
+            else expand("results/maps/{output_prefix}/t{inc_time}/{{sample}}_t{inc_time}_mapped.sort.bam",
+                        sample=sample_to_info.keys(), output_prefix=config['output_prefix'], inc_time=config["incubation_times"]) if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
+        fr_maps = sorted(list(set(expand("results/maps/{n}/{{sample}}-v-{sample_map}_{n}_{isotope}_mapped.sort.bam",
+                        sample_map=sample_to_info.keys(), n=sorted(fractions), isotope=config["isotopes"])))) if config["single_scaffold_file"] == 'f' \
+             else sorted(list(set(expand("results/maps/{output_prefix}/{n}/{{sample}}_{n}_{isotope}_mapped.sort.bam",
+                        sample=sample_to_info.keys(), n=sorted(fractions), isotope=config["isotopes"], output_prefix=config['output_prefix'])))) if config["single_scaffold_file"] == 't' \
+             else SINGLE_SCAFFOLD_ERROR,
+    output:
+        merged_map = "results/maps/{sample}/{sample}_merged_mapped.sort.bam" if config["single_scaffold_file"] == 'f' \
+                 else "results/maps/{output_prefix}/{sample}_merged_mapped.sort.bam" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
+    log: "logs/maps/{sample}_merged_mapped.log" if config["single_scaffold_file"] == 'f' \
+        else "logs/maps/{output_prefix}/{sample}_merged_mapped.log" if config["single_scaffold_file"] == 't' else SINGLE_SCAFFOLD_ERROR,
+    threads: config["max_threads"]
+    wildcard_constraints:
+        output_prefix=config["output_prefix"],
+    shell:
+        """
+        samtools merge -r -@ {threads} {output.merged_map} {input.unfr_map} {input.fr_maps}
         """
 
 if config['single_scaffold_file'] == 'f':
@@ -320,4 +242,4 @@ if config['single_scaffold_file'] == 'f':
                 sort {output.tpm_headers} | uniq -d > {output.tpms}
                 tail -q -n +2 {input.tpm_counts} >> {output.tpms}
             fi
-        """
+            """
